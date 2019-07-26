@@ -72,7 +72,7 @@ spring:
     type: redis
   redis:
     ssl: true
-    host: spring-on-azure.redis.cache.windows.net
+    host: sona-app.redis.cache.windows.net
     port: 6380
     password: Y27iYghxMcY1qoRVyjQkZExS8RaHdln4QfLsqHRNsHE=
 
