@@ -74,7 +74,7 @@ spring:
     ssl: true
     host: sona-app.redis.cache.windows.net
     port: 6380
-    password: Y27iYghxMcY1qoRVyjQkZExS8RaHdln4QfLsqHRNsHE=
+    password: NAparUfeaH+9oUjizWH6gd2szjwVA6El0SirNZYQSKk=
 
 # ===================================================================
 # To enable TLS in production, generate a certificate using:
