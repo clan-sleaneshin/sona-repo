@@ -45,6 +45,12 @@
                             <span>Ticket</span>
                         </a>
                     </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="sworker" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                            <span>Sxx Worker</span>
+                        </a>
+                    </li>
                     <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
                 </ul>
             </li>
