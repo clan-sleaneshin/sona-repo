@@ -18,7 +18,7 @@ import { RouterModule } from '@angular/router';
       },
       {
         path: 'sworker',
-        loadChildren: './sworker/sworker.module#SworkerModule'
+        loadChildren: './sworker/sworker.module#BugtrackerSworkerModule'
       }
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ])

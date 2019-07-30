@@ -1,16 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Routes } from '@angular/router';
-import { JhiResolvePagingParams } from 'ng-jhipster';
+import { JhiPaginationUtil, JhiResolvePagingParams } from 'ng-jhipster';
 import { UserRouteAccessService } from 'app/core';
 import { Observable, of } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
-import { Sworker, ISworker } from 'app/shared/model/sworker.model';
+import { Sworker } from 'app/shared/model/sworker.model';
 import { SworkerService } from './sworker.service';
 import { SworkerComponent } from './sworker.component';
 import { SworkerDetailComponent } from './sworker-detail.component';
 import { SworkerUpdateComponent } from './sworker-update.component';
 import { SworkerDeletePopupComponent } from './sworker-delete-dialog.component';
+import { ISworker } from 'app/shared/model/sworker.model';
 
 @Injectable({ providedIn: 'root' })
 export class SworkerResolve implements Resolve<ISworker> {
@@ -21,7 +22,7 @@ export class SworkerResolve implements Resolve<ISworker> {
     if (id) {
       return this.service.find(id).pipe(
         filter((response: HttpResponse<Sworker>) => response.ok),
-        map((project: HttpResponse<Sworker>) => project.body)
+        map((sworker: HttpResponse<Sworker>) => sworker.body)
       );
     }
     return of(new Sworker());
@@ -38,7 +39,7 @@ export const sworkerRoute: Routes = [
     data: {
       authorities: ['ROLE_USER'],
       defaultSort: 'id,asc',
-      pageTitle: 'Sxx Workers'
+      pageTitle: 'Sworkers'
     },
     canActivate: [UserRouteAccessService]
   },
@@ -46,11 +47,11 @@ export const sworkerRoute: Routes = [
     path: ':id/view',
     component: SworkerDetailComponent,
     resolve: {
-      project: SworkerResolve
+      sworker: SworkerResolve
     },
     data: {
       authorities: ['ROLE_USER'],
-      pageTitle: 'Sxx Workers'
+      pageTitle: 'Sworkers'
     },
     canActivate: [UserRouteAccessService]
   },
@@ -58,11 +59,11 @@ export const sworkerRoute: Routes = [
     path: 'new',
     component: SworkerUpdateComponent,
     resolve: {
-      project: SworkerResolve
+      sworker: SworkerResolve
     },
     data: {
       authorities: ['ROLE_USER'],
-      pageTitle: 'Sxx Workers'
+      pageTitle: 'Sworkers'
     },
     canActivate: [UserRouteAccessService]
   },
@@ -70,11 +71,11 @@ export const sworkerRoute: Routes = [
     path: ':id/edit',
     component: SworkerUpdateComponent,
     resolve: {
-      project: SworkerResolve
+      sworker: SworkerResolve
     },
     data: {
       authorities: ['ROLE_USER'],
-      pageTitle: 'Sxx Workers'
+      pageTitle: 'Sworkers'
     },
     canActivate: [UserRouteAccessService]
   }
@@ -85,11 +86,11 @@ export const sworkerPopupRoute: Routes = [
     path: ':id/delete',
     component: SworkerDeletePopupComponent,
     resolve: {
-      project: SworkerResolve
+      sworker: SworkerResolve
     },
     data: {
       authorities: ['ROLE_USER'],
-      pageTitle: 'Sxx Workers'
+      pageTitle: 'Sworkers'
     },
     canActivate: [UserRouteAccessService],
     outlet: 'popup'

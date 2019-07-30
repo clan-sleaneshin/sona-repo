@@ -1,14 +1,11 @@
-import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { IUser, UserService } from 'app/core';
-import { ISworker, Sworker } from 'app/shared/model/sworker.model';
-import { JhiAlertService } from 'ng-jhipster';
 import { Observable } from 'rxjs';
-import { filter, map } from 'rxjs/operators';
+import * as moment from 'moment';
+import { ISworker, Sworker } from 'app/shared/model/sworker.model';
 import { SworkerService } from './sworker.service';
-
 
 @Component({
   selector: 'jhi-sworker-update',
@@ -17,13 +14,6 @@ import { SworkerService } from './sworker.service';
 export class SworkerUpdateComponent implements OnInit {
   sworker: ISworker;
   isSaving: boolean;
-
-  hairColors: ['Black', 'Brown', 'Blonde', 'Ginger'];
-  eyeColors: ['Black', 'Brown', 'Blue', 'Green'];
-  ethnicities: ['White', 'Black', 'Asian', 'Latin'];
-
-  users: IUser[];
-
   birthDateDp: any;
 
   editForm = this.fb.group({
@@ -37,25 +27,14 @@ export class SworkerUpdateComponent implements OnInit {
     ethnicity: []
   });
 
-  constructor(protected jhiAlertService: JhiAlertService,
-    protected sworkerService: SworkerService,
-    protected userService: UserService,
-    protected activatedRoute: ActivatedRoute,
-    private fb: FormBuilder) { }
+  constructor(protected sworkerService: SworkerService, protected activatedRoute: ActivatedRoute, private fb: FormBuilder) {}
 
   ngOnInit() {
     this.isSaving = false;
     this.activatedRoute.data.subscribe(({ sworker }) => {
       this.updateForm(sworker);
-      this.sworker = this.sworker;
+      this.sworker = sworker;
     });
-    this.userService
-      .query()
-      .pipe(
-        filter((mayBeOk: HttpResponse<IUser[]>) => mayBeOk.ok),
-        map((response: HttpResponse<IUser[]>) => response.body)
-      )
-      .subscribe((res: IUser[]) => (this.users = res), (res: HttpErrorResponse) => this.onError(res.message));
   }
 
   updateForm(sworker: ISworker) {
@@ -69,6 +48,10 @@ export class SworkerUpdateComponent implements OnInit {
       eyeColor: sworker.eyeColor,
       ethnicity: sworker.ethnicity
     });
+  }
+
+  previousState() {
+    window.history.back();
   }
 
   save() {
@@ -108,24 +91,4 @@ export class SworkerUpdateComponent implements OnInit {
   protected onSaveError() {
     this.isSaving = false;
   }
-
-  protected onError(errorMessage: string) {
-    this.jhiAlertService.error(errorMessage, null, null);
-  }
-
-  previousState() {
-    window.history.back();
-  }
-
-  getSelected(selectedVals: Array<any>, option: any) {
-    if (selectedVals) {
-      for (let i = 0; i < selectedVals.length; i++) {
-        if (option === selectedVals[i]) {
-          return selectedVals[i];
-        }
-      }
-    }
-    return option;
-  }
-
 }

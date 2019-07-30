@@ -10,7 +10,7 @@ import { ISworker } from 'app/shared/model/sworker.model';
 export class SworkerDetailComponent implements OnInit {
   sworker: ISworker;
 
-  constructor(protected activatedRoute: ActivatedRoute) { }
+  constructor(protected activatedRoute: ActivatedRoute) {}
 
   ngOnInit() {
     this.activatedRoute.data.subscribe(({ sworker }) => {
@@ -21,5 +21,4 @@ export class SworkerDetailComponent implements OnInit {
   previousState() {
     window.history.back();
   }
-
 }

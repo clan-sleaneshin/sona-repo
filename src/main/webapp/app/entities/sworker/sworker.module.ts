@@ -16,8 +16,14 @@ const ENTITY_STATES = [...sworkerRoute, ...sworkerPopupRoute];
 
 @NgModule({
   imports: [BugtrackerSharedModule, RouterModule.forChild(ENTITY_STATES)],
-  declarations: [SworkerComponent, SworkerDetailComponent, SworkerUpdateComponent, SworkerDeleteDialogComponent, SworkerDeletePopupComponent],
+  declarations: [
+    SworkerComponent,
+    SworkerDetailComponent,
+    SworkerUpdateComponent,
+    SworkerDeleteDialogComponent,
+    SworkerDeletePopupComponent
+  ],
   entryComponents: [SworkerComponent, SworkerUpdateComponent, SworkerDeleteDialogComponent, SworkerDeletePopupComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class SworkerModule { }
+export class BugtrackerSworkerModule {}

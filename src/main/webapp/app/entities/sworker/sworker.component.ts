@@ -1,10 +1,14 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { filter, map } from 'rxjs/operators';
 import { JhiEventManager, JhiParseLinks, JhiAlertService } from 'ng-jhipster';
-import { ISworker } from 'app/shared/model/sworker.model';
 
+import { ISworker } from 'app/shared/model/sworker.model';
 import { AccountService } from 'app/core';
+
+import { ITEMS_PER_PAGE } from 'app/shared';
 import { SworkerService } from './sworker.service';
 
 @Component({
@@ -23,13 +27,26 @@ export class SworkerComponent implements OnInit, OnDestroy {
   itemsPerPage: any;
   page: any;
   predicate: any;
+  previousPage: any;
   reverse: any;
 
-  constructor(protected sworkerService: SworkerService,
+  constructor(
+    protected sworkerService: SworkerService,
     protected parseLinks: JhiParseLinks,
     protected jhiAlertService: JhiAlertService,
     protected accountService: AccountService,
-    protected eventManager: JhiEventManager) { }
+    protected activatedRoute: ActivatedRoute,
+    protected router: Router,
+    protected eventManager: JhiEventManager
+  ) {
+    this.itemsPerPage = ITEMS_PER_PAGE;
+    this.routeData = this.activatedRoute.data.subscribe(data => {
+      this.page = data.pagingParams.page;
+      this.previousPage = data.pagingParams.page;
+      this.reverse = data.pagingParams.ascending;
+      this.predicate = data.pagingParams.predicate;
+    });
+  }
 
   loadAll() {
     this.sworkerService
@@ -44,8 +61,54 @@ export class SworkerComponent implements OnInit, OnDestroy {
       );
   }
 
+  loadPage(page: number) {
+    if (page !== this.previousPage) {
+      this.previousPage = page;
+      this.transition();
+    }
+  }
+
+  transition() {
+    this.router.navigate(['/sworker'], {
+      queryParams: {
+        page: this.page,
+        size: this.itemsPerPage,
+        sort: this.predicate + ',' + (this.reverse ? 'asc' : 'desc')
+      }
+    });
+    this.loadAll();
+  }
+
+  clear() {
+    this.page = 0;
+    this.router.navigate([
+      '/sworker',
+      {
+        page: this.page,
+        sort: this.predicate + ',' + (this.reverse ? 'asc' : 'desc')
+      }
+    ]);
+    this.loadAll();
+  }
+
+  ngOnInit() {
+    this.loadAll();
+    this.accountService.identity().then(account => {
+      this.currentAccount = account;
+    });
+    this.registerChangeInSworkers();
+  }
+
+  ngOnDestroy() {
+    this.eventManager.destroy(this.eventSubscriber);
+  }
+
+  trackId(index: number, item: ISworker) {
+    return item.id;
+  }
+
   registerChangeInSworkers() {
-    this.eventSubscriber = this.eventManager.subscribe('sworkersListModification', response => this.loadAll());
+    this.eventSubscriber = this.eventManager.subscribe('sworkerListModification', response => this.loadAll());
   }
 
   sort() {
@@ -65,17 +128,4 @@ export class SworkerComponent implements OnInit, OnDestroy {
   protected onError(errorMessage: string) {
     this.jhiAlertService.error(errorMessage, null, null);
   }
-
-  ngOnInit() {
-    this.loadAll();
-    this.accountService.identity().then(account => {
-      this.currentAccount = account;
-    });
-    this.registerChangeInSworkers();
-  }
-
-  ngOnDestroy() {
-    this.eventManager.destroy(this.eventSubscriber);
-  }
-
 }

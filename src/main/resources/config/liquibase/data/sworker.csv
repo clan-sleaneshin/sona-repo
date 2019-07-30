@@ -1,4 +1,4 @@
-id;name;nationality;birthDate;height;hairColor;eyeColor;ethnicity
+id;name;nationality;birth_date;height;hair_color;eye_color;ethnicity
 1;Silvia Saint;Czech;1976-02-12;165;Blonde;Blue;White
 2;Vanessa del Rio;American;1952-03-31;168;Black;Black;Latin
 3;Lisa Ann;American;1972-05-09;157;Brown;Brown;White

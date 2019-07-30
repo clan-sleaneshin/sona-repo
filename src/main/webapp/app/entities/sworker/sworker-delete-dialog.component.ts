@@ -24,7 +24,7 @@ export class SworkerDeleteDialogComponent {
     this.sworkerService.delete(id).subscribe(response => {
       this.eventManager.broadcast({
         name: 'sworkerListModification',
-        content: 'Deleted an Sxx Worker'
+        content: 'Deleted an sworker'
       });
       this.activeModal.dismiss(true);
     });

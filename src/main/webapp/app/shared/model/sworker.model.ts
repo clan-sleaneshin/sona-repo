@@ -21,5 +21,5 @@ export class Sworker implements ISworker {
     public hairColor?: string,
     public eyeColor?: string,
     public ethnicity?: string
-  ) { }
+  ) {}
 }

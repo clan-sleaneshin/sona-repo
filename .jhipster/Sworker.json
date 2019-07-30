@@ -1,11 +1,14 @@
 {
-    "name": "Sworker",
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [],
     "fields": [
         {
             "fieldName": "name",
             "fieldType": "String",
             "fieldValidateRules": [
-                "required"
+                "required",
+                "unique"
             ]
         },
         {
@@ -18,16 +21,27 @@
         },
         {
             "fieldName": "height",
-            "fieldType": "number"
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "hairColor",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "eyeColor",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "ethnicity",
+            "fieldType": "String"
         }
     ],
-    "changelogDate": "20190730161453",
-    "entityTableName": "sworker",
+    "changelogDate": "20190730194739",
     "dto": "no",
-    "pagination": "pagination",
-    "service": "no",
+    "searchEngine": false,
+    "service": "serviceImpl",
+    "entityTableName": "sworker",
+    "databaseType": "sql",
     "jpaMetamodelFiltering": false,
-    "fluentMethods": true,
-    "clientRootFolder": "",
-    "applications": "*"
+    "pagination": "pagination"
 }

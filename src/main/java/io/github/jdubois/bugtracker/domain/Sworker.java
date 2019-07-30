@@ -1,19 +1,16 @@
 package io.github.jdubois.bugtracker.domain;
 
 
+
+import javax.persistence.*;
+import javax.validation.constraints.*;
+
 import java.io.Serializable;
 import java.time.LocalDate;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
+import java.util.Objects;
 
 /**
- * A Sxx Worker.
+ * A Sworker.
  */
 @Entity
 @Table(name = "sworker")
@@ -26,22 +23,22 @@ public class Sworker implements Serializable {
     private Long id;
 
     @NotNull
-    @Column(name = "name", nullable = false)
+    @Column(name = "name", nullable = false, unique = true)
     private String name;
 
     @Column(name = "nationality")
     private String nationality;
 
-    @Column(name = "birthDate")
+    @Column(name = "birth_date")
     private LocalDate birthDate;
 
     @Column(name = "height")
     private Integer height;
 
-    @Column(name = "hairColor")
+    @Column(name = "hair_color")
     private String hairColor;
 
-    @Column(name = "eyeColor")
+    @Column(name = "eye_color")
     private String eyeColor;
 
     @Column(name = "ethnicity")
@@ -99,7 +96,7 @@ public class Sworker implements Serializable {
         return height;
     }
 
-    public Sworker done(Integer height) {
+    public Sworker height(Integer height) {
         this.height = height;
         return this;
     }
@@ -171,7 +168,7 @@ public class Sworker implements Serializable {
             ", name='" + getName() + "'" +
             ", nationality='" + getNationality() + "'" +
             ", birthDate='" + getBirthDate() + "'" +
-            ", height='" + getHeight() + "'" +
+            ", height=" + getHeight() +
             ", hairColor='" + getHairColor() + "'" +
             ", eyeColor='" + getEyeColor() + "'" +
             ", ethnicity='" + getEthnicity() + "'" +

@@ -1,13 +1,14 @@
 package io.github.jdubois.bugtracker.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import io.github.jdubois.bugtracker.domain.Sworker;
+import org.springframework.data.jpa.repository.*;
 import org.springframework.stereotype.Repository;
 
-import io.github.jdubois.bugtracker.domain.Sworker;
 
 /**
  * Spring Data  repository for the Sworker entity.
  */
+@SuppressWarnings("unused")
 @Repository
 public interface SworkerRepository extends JpaRepository<Sworker, Long> {
 
