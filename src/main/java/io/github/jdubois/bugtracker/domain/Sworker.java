@@ -13,7 +13,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 /**
- * A Ticket.
+ * A Sxx Worker.
  */
 @Entity
 @Table(name = "sworker")
@@ -32,13 +32,13 @@ public class Sworker implements Serializable {
     @Column(name = "nationality")
     private String nationality;
 
-    @Column(name = "birth_date")
+    @Column(name = "birthDate")
     private LocalDate birthDate;
 
     @Column(name = "height")
     private Integer height;
 
-    @Column(name = "hair_color")
+    @Column(name = "hairColor")
     private String hairColor;
 
     @Column(name = "eyeColor")
