@@ -1,10 +1,10 @@
 <div>
     <h2 id="page-heading">
-        <span>Sworkers</span>
+        <span>SXX WORKERS</span>
         <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-sworker" [routerLink]="['/sworker/new']">
             <fa-icon [icon]="'plus'"></fa-icon>
             <span >
-            Create new Sworker
+            Add a new Sxx Worker
             </span>
         </button>
     </h2>
@@ -18,7 +18,7 @@
             <th jhiSortBy="name"><span>Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="nationality"><span>Nationality</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="birthDate"><span>Birth Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="height"><span>Height</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="height (m)"><span>Height</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="hairColor"><span>Hair Color</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="eyeColor"><span>Eye Color</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="ethnicity"><span>Ethnicity</span> <fa-icon [icon]="'sort'"></fa-icon></th>
@@ -30,8 +30,8 @@
                 <td><a [routerLink]="['/sworker', sworker.id, 'view' ]">{{sworker.id}}</a></td>
                 <td>{{sworker.name}}</td>
                 <td>{{sworker.nationality}}</td>
-                <td>{{sworker.birthDate | date:'mediumDate'}}</td>
-                <td>{{sworker.height}}</td>
+                <td>{{sworker.birthDate | date:'fullDate'}}</td>
+                <td>{{sworker.height/100 | number: 1.1-2}}</td>
                 <td>{{sworker.hairColor}}</td>
                 <td>{{sworker.eyeColor}}</td>
                 <td>{{sworker.ethnicity}}</td>

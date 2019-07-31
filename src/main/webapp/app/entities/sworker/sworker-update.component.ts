@@ -16,6 +16,8 @@ export class SworkerUpdateComponent implements OnInit {
   isSaving: boolean;
   birthDateDp: any;
 
+  ethnicities: ['Asian', 'Black', 'Latin', 'White'];
+
   editForm = this.fb.group({
     id: [],
     name: [null, [Validators.required]],
@@ -27,7 +29,7 @@ export class SworkerUpdateComponent implements OnInit {
     ethnicity: []
   });
 
-  constructor(protected sworkerService: SworkerService, protected activatedRoute: ActivatedRoute, private fb: FormBuilder) {}
+  constructor(protected sworkerService: SworkerService, protected activatedRoute: ActivatedRoute, private fb: FormBuilder) { }
 
   ngOnInit() {
     this.isSaving = false;
@@ -90,5 +92,16 @@ export class SworkerUpdateComponent implements OnInit {
 
   protected onSaveError() {
     this.isSaving = false;
+  }
+
+  getSelected(selectedVals: Array<any>, option: any) {
+    if (selectedVals) {
+      for (let i = 0; i < selectedVals.length; i++) {
+        if (option === selectedVals[i]) {
+          return selectedVals[i];
+        }
+      }
+    }
+    return option;
   }
 }
