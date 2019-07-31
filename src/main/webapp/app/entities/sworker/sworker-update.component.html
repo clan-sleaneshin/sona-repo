@@ -52,7 +52,7 @@
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" for="field_ethnicity">Ethnicity</label>
-                    <select class="form-control" id="field_ethnicity" multiple name="ethnicity" formControlName="ethnicity">
+                    <select class="form-control" id="field_ethnicity" name="ethnicity" formControlName="ethnicity">
                         <option [ngValue]="getSelected(editForm.get('ethnicity').value, ethnicityOption)"
                             *ngFor="let ethnicityOption of ethnicities;">{{ethnicityOption}}</option>
                     </select>
