@@ -7,6 +7,11 @@ import * as moment from 'moment';
 import { ISworker, Sworker } from 'app/shared/model/sworker.model';
 import { SworkerService } from './sworker.service';
 
+export interface OptionSelect {
+  key: string;
+  value: string;
+}
+
 @Component({
   selector: 'jhi-sworker-update',
   templateUrl: './sworker-update.component.html'
@@ -16,7 +21,26 @@ export class SworkerUpdateComponent implements OnInit {
   isSaving: boolean;
   birthDateDp: any;
 
-  ethnicities: ['Asian', 'Black', 'Latin', 'White'];
+  hairColors: OptionSelect[] = [
+    {key: 'Black', value: 'Black'},
+    {key: 'Blonde', value: 'Blonde'},
+    {key: 'Brown', value: 'Brown'},
+    {key: 'Ginger', value: 'Ginger'}
+  ];
+
+  eyeColors: OptionSelect[] = [
+    {key: 'Black', value: 'Black'},
+    {key: 'Blue', value: 'Blue'},
+    {key: 'Brown', value: 'Brown'},
+    {key: 'Green', value: 'Green'}
+  ];
+
+  ethnicities: OptionSelect[] = [
+    {key: 'Asian', value: 'Asian'},
+    {key: 'Black', value: 'Black'},
+    {key: 'Latin', value: 'Latin'},
+    {key: 'White', value: 'White'}
+  ];
 
   editForm = this.fb.group({
     id: [],
