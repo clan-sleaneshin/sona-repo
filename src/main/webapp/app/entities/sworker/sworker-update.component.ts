@@ -94,7 +94,7 @@ export class SworkerUpdateComponent implements OnInit {
     this.isSaving = false;
   }
 
-  getSelected(selectedVals: Array<any>, option: any) {
+  getSelected(selectedVals: Array<String>, option: String) {
     if (selectedVals) {
       for (let i = 0; i < selectedVals.length; i++) {
         if (option === selectedVals[i]) {
